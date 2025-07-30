@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/main.css" />
+    <link rel="stylesheet" href="./src/tailwind/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.fontcdn.ir/Font/Persian/VazirmatnFD/Vazirmatn-FD.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body class="min-h-screen">
+    <!-- Floating elements containers -->
+    <div id="hearts-container"></div>
+    <div id="stars-container"></div>
+    <!-- end Floating elements containers -->
+
+    <!-- Audio element -->
+    <audio id="bgMusic"></audio>
+
+    <!-- Music Controls -->
+    <div
+      class="fixed bottom-4 right-4 z-50 flex items-center gap-1 sm:gap-2 rounded-xl p-2 sm:p-3 backdrop-blur-md transition-all duration-300 mx-2 mb-2 sm:mx-0 sm:mb-0 bg-[rgba(255,240,245,0.7)] border border-[rgba(255,182,193,0.4)] shadow-[0_4px_30px_rgba(255,192,203,0.3)] dark:bg-[rgba(16,24,48,0.7)] dark:border-[rgba(100,149,237,0.3)] dark:shadow-[0_4px_30px_rgba(70,130,180,0.3)]"
+    >
+      <!-- Shuffle Button -->
+      <button
+        id="shuffleBtn"
+        class="p-1 sm:p-2 text-gray-500 hover:text-[#7d5bff] rounded-full transition-colors duration-200 dark:text-gray-400 dark:hover:text-[#7dcfff] aria-pressed:text-[#ff85a2] dark:aria-pressed:text-[#7dcfff]"
+        aria-label="Shuffle"
+        aria-pressed="false"
+      >
+        <i class="fas fa-random text-sm sm:text-base"></i>
+      </button>
+
+      <!-- Previous Button -->
+      <button
+        id="prevSong"
+        class="p-1 sm:p-2 text-[#9c7bff] hover:bg-[rgba(255,209,220,0.5)] hover:text-[#7d5bff] rounded-full transition-colors duration-200 dark:text-[#a3d4ff] dark:hover:bg-[rgba(100,149,237,0.2)] dark:hover:text-[#b5e8ff]"
+        aria-label="Previous song"
+      >
+        <i class="fas fa-step-backward text-sm sm:text-base"></i>
+      </button>
+
+      <!-- Play/Pause Button -->
+      <button
+        id="musicToggle"
+        class="p-2 sm:p-3 bg-[rgba(255,255,255,0.8)] text-[#ff85a2] shadow-[0_2px_10px_rgba(255,182,193,0.4)] hover:bg-[rgba(255,255,255,0.9)] hover:text-[#ff6b8b] rounded-full transition-all duration-200 active:scale-95 dark:bg-[rgba(30,60,90,0.6)] dark:text-[#7dcfff] dark:shadow-[0_2px_10px_rgba(70,130,180,0.4)] dark:hover:bg-[rgba(30,60,90,0.8)] dark:hover:text-[#b5e8ff]"
+        aria-label="Play/Pause"
+      >
+        <i class="fas fa-play text-base sm:text-lg"></i>
+      </button>
+
+      <!-- Next Button -->
+      <button
+        id="nextSong"
+        class="p-1 sm:p-2 text-[#9c7bff] hover:bg-[rgba(255,209,220,0.5)] hover:text-[#7d5bff] rounded-full transition-colors duration-200 dark:text-[#a3d4ff] dark:hover:bg-[rgba(100,149,237,0.2)] dark:hover:text-[#b5e8ff]"
+        aria-label="Next song"
+      >
+        <i class="fas fa-step-forward text-sm sm:text-base"></i>
+      </button>
+
+      <!-- Now Playing Text -->
+      <span
+        id="nowPlaying"
+        class="max-w-[8rem] sm:max-w-[12rem] mobile:hidden desktop:block truncate text-xs sm:text-sm font-medium text-[#d35d8a] dark:text-[#a3d4ff] px-1 sm:px-2"
+      >
+        Now Playing
+      </span>
+    </div>
+    <!-- end Audio element -->
+
+    <!-- header -->
+    <nav
+      class="fixed w-full z-50 backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 shadow-sm transition-colors duration-200 border-b border-gray-100/40 dark:border-gray-800/30"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-5">
+        <div class="flex items-center justify-between h-14">
+          <!-- Logo name -->
+          <div class="flex items-center">
+            <a href="#" class="flex items-center group" aria-label="Home">
+              <span
+                class="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent dark:from-pink-400 dark:to-purple-300 transition-opacity duration-300 group-hover:opacity-90"
+              >
+                Parmidam
+              </span>
+              <span
+                class="text-pink-500 dark:text-pink-400 ml-1 transition-transform duration-300 group-hover:scale-110"
+                >❤</span
+              >
+            </a>
+          </div>
+
+          <!-- header Right -->
+          <div class="flex items-center space-x-1">
+            <!-- Theme toggle -->
+            <button
+              id="themeToggle"
+              class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:bg-gray-100/60 dark:hover:bg-gray-800/40 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-purple-300"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              <span class="relative w-4 h-4">
+                <i
+                  class="fas fa-moon absolute inset-0 transition-all duration-300 dark:opacity-0 dark:rotate-90"
+                ></i>
+                <i
+                  class="fas fa-sun absolute inset-0 transition-all duration-300 opacity-0 dark:opacity-100 rotate-90 dark:rotate-0"
+                ></i>
+              </span>
+            </button>
+
+            <!-- Language toggle -->
+            <button
+              id="languageToggle"
+              class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:bg-gray-100/60 dark:hover:bg-gray-800/40 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-purple-300 text-sm font-medium"
+              aria-label="Toggle language"
+              aria-pressed="false"
+            >
+              <span id="currentLanguage">EN</span>
+            </button>
+
+            <!-- Music toggle with visual feedback -->
+            <button
+              id="headerMusicToggle"
+              class="w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 hover:bg-gray-100/60 dark:hover:bg-gray-800/40 text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-purple-300"
+              aria-label="Play/Pause"
+            >
+              <i class="fas fa-music text-[15px]"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--end header -->
+
+    <!-- Hero Section-->
+    <section
+      id="home"
+      class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+    >
+      <div class="text-center">
+        <h1
+          class="text-5xl md:text-7xl font-bold mb-6 dancing-font text-pink-600 dark:text-purple-300 fade-in"
+        >
+          <span data-i18n="heroTitle">Happy Girlfriend's Day</span>
+        </h1>
+        <h2
+          class="text-3xl md:text-5xl font-bold mb-8 dancing-font text-pink-500 dark:text-purple-400 fade-in"
+        >
+          <span data-i18n="heroSubtitle">My Beautiful Parmidam</span>
+        </h2>
+        <p
+          class="text-xl mb-8 max-w-3xl mx-auto text-gray-700 dark:text-gray-300 fade-in"
+        >
+          <span data-i18n="heroDescription">
+            Today and every day, I celebrate the incredible woman who brings so
+            much love and joy into my life.
+          </span>
+        </p>
+        <div class="flex justify-center space-x-4 mt-10">
+          <button
+            id="giveFlower"
+            class="px-6 py-3 bg-pink-500 dark:bg-purple-500 text-white rounded-full font-medium hover:bg-pink-600 dark:hover:bg-purple-400 transition transform hover:scale-105 shadow-lg hover:shadow-pink-200/50 dark:hover:shadow-purple-200/30"
+          >
+            <span data-i18n="flowerButton">Give Parmidam a Flower 🌸</span>
+          </button>
+          <button
+            id="generateQuote"
+            class="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition transform hover:scale-105 shadow-lg"
+          >
+            <span data-i18n="quoteButton">Love Quote 💌</span>
+          </button>
+        </div>
+        <div id="quoteDisplay" class="mt-6 text-center"></div>
+      </div>
+
+      <!-- Countdown to anniversary -->
+      <div class="mt-16 flex justify-center">
+        <div
+          class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-xl shadow-lg max-w-2xl w-full backdrop-blur-sm border border-pink-100 dark:border-purple-900/50"
+        >
+          <h3
+            class="text-2xl font-bold mb-4 dancing-font text-center text-pink-500 dark:text-purple-400"
+          >
+            <span data-i18n="countdownTitle">Our Love Countdown</span>
+          </h3>
+          <div class="flex justify-around">
+            <!-- Days -->
+            <div class="countdown-item">
+              <div
+                id="countdown-days"
+                class="countdown-number text-pink-500 dark:text-purple-400"
+              >
+                <span class="digit">0</span><span class="digit">0</span>
+              </div>
+              <div class="countdown-label text-gray-600 dark:text-gray-400">
+                <span data-i18n="countdownDays">Days</span>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="countdown-item">
+              <div
+                id="countdown-hours"
+                class="countdown-number text-pink-500 dark:text-purple-400"
+              >
+                <span class="digit">0</span><span class="digit">0</span>
+              </div>
+              <div class="countdown-label text-gray-600 dark:text-gray-400">
+                <span data-i18n="countdownHours">Hours</span>
+              </div>
+            </div>
+
+            <!-- Minutes -->
+            <div class="countdown-item">
+              <div
+                id="countdown-minutes"
+                class="countdown-number text-pink-500 dark:text-purple-400"
+              >
+                <span class="digit">0</span><span class="digit">0</span>
+              </div>
+              <div class="countdown-label text-gray-600 dark:text-gray-400">
+                <span data-i18n="countdownMinutes">Minutes</span>
+              </div>
+            </div>
+
+            <!-- Seconds -->
+            <div class="countdown-item">
+              <div
+                id="countdown-seconds"
+                class="countdown-number text-pink-500 dark:text-purple-400"
+              >
+                <span class="digit">0</span><span class="digit">0</span>
+              </div>
+              <div class="countdown-label text-gray-600 dark:text-gray-400">
+                <span data-i18n="countdownSeconds">Seconds</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-center mt-4 text-gray-600 dark:text-gray-400">
+            <span data-i18n="countdownText"
+              >Until our next anniversary on February 14, 2026</span
+            >
+          </p>
+        </div>
+      </div>
+      <!-- MODAL Anniversary-->
+      <div
+        id="celebrationModal"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      >
+        <div
+          class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-2xl max-w-md w-full text-center space-y-4 animate-fade-in"
+        >
+          <img
+            id="celebrationImg"
+            src=""
+            alt="Celebration Flower"
+            class="rounded-xl shadow-md mx-auto w-full h-[450px] object-cover"
+          />
+          <h2
+            data-i18n="celebrationText"
+            class="text-2xl font-bold text-pink-600 dark:text-pink-400 dancing-font"
+          >
+            🎉 Happy Anniversary, my love!
+          </h2>
+          <button
+            id="closeCelebration"
+            class="mt-2 px-4 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memories Section -->
+    <section id="memories" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <h2
+        class="text-3xl md:text-4xl font-bold mb-12 text-center dancing-font text-pink-600 dark:text-purple-300"
+        data-i18n="memoriesTitle"
+      >
+      Sweet Reminiscences
+      </h2>
+      <div class="grid mobile:grid-cols-1 desktop:grid-cols-3 gap-8">
+        <div
+          class="memory-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-pink-200 dark:border-purple-700 transition-colors duration-300"
+        >
+          <div
+            class="aspect-square rounded-lg mb-4 relative overflow-hidden shadow-inner"
+          >
+            <img
+              src="./public/images/Anniversary/2.jpg"
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3
+            class="text-xl font-semibold mb-2 text-pink-600 dark:text-purple-300"
+            data-i18n="memoriesSmileTitle"
+          >
+            Your Smile
+          </h3>
+          <p
+            class="text-sm opacity-90 mb-3 text-gray-700 dark:text-gray-300"
+            data-i18n="memoriesSmileDesc"
+          >
+            Every time you laugh, my world brightens — your smile is the
+            sweetest song that sings straight to my soul.
+          </p>
+        </div>
+
+        <div
+          class="memory-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-blue-200 dark:border-blue-800 transition-colors duration-300"
+        >
+          <div
+            class="aspect-square rounded-lg mb-4 relative overflow-hidden shadow-inner"
+          >
+            <img
+              src="./public/images/Anniversary/3.jpg"
+              alt=""
+              class="w-full h-full object-cover object-top"
+            />
+          </div>
+
+          <h3
+            class="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-300"
+            data-i18n="memoriesFirstKissTitle"
+          >
+            Our First Kiss
+          </h3>
+          <p
+            class="text-sm opacity-90 mb-3 text-gray-700 dark:text-gray-300"
+            data-i18n="memoriesFirstKissDesc"
+          >
+            That gentle moment our lips met for the first time—soft, nervous,
+            and yet so full of love. I’ll never forget how my heart raced for
+            you.
+          </p>
+        </div>
+
+        <div
+          class="memory-card bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-pink-200 dark:border-pink-700 transition-colors duration-300"
+        >
+          <div
+            class="aspect-square rounded-lg mb-4 relative overflow-hidden shadow-inner"
+          >
+            <img
+              src="./public/images/Memories Section/birthday.jpg"
+              alt=""
+              class="w-full h-full object-cover object-bottom"
+            />
+          </div>
+
+          <h3
+            class="text-xl font-semibold mb-2 text-pink-600 dark:text-pink-300"
+            data-i18n="memoriesBirthdayTitle"
+          >
+            Your Birthday
+          </h3>
+          <p
+            class="text-sm opacity-90 mb-3 text-gray-700 dark:text-gray-300"
+            data-i18n="memoriesBirthdayDesc"
+          >
+            The day you were born, love found its way into the world—and years
+            later, into my heart.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+    <script src="./src/js/main.js"></script>
+  </body>
+</html>
