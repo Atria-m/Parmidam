@@ -316,7 +316,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Initialize
 loadSong(0);
 updateToggleButtons();
 
@@ -397,14 +396,14 @@ const translations = {
     fa: "ثانیه",
   },
   countdownText: {
-    en: "Until our next anniversary on February 14, 2026",
-    fa: "تا سالگرد بعدی ما در ۲۵ بهمن",
+    en: "Until our next anniversary on January 2, 2026",
+    fa: "تا سالگرد بعدی ما در ۱۳ دی",
   },
   celebrationText: {
     en: " Happy Anniversary, my love 🎉",
     fa: " سالگردمون مبارک عشق قشنگم 🎉",
   },
-  
+
   // Memories Section
   memoriesTitle: {
     en: "Sweet Reminiscences",
@@ -503,6 +502,60 @@ const translations = {
       { text: "تو شدی دلیل عاشق موندنم، بعد از همه‌ی سختی‌ها." },
       { text: "دل من، با بودن تو، دیگه چیزی کم نداره." },
     ],
+  },
+
+  // Our Story Section
+  momentsForeverTitle: {
+    en: "Moments Forever in My Heart",
+    fa: "لحظه‌هایی که همیشه در قلبمه",
+  },
+  firstHugTitle: {
+    en: "That First Hug – When My Heart Knew",
+    fa: "اولین آغوش ، جایی که قلبم فهمید",
+  },
+  firstHugDesc: {
+    en: `We met through a friend, just a casual day. But as we said goodbye, standing near the metro, you hugged me. And in that brief embrace, something shifted inside me, a softness, a spark, a silent whisper in my chest: This isn't just a moment. She's going to mean more.`,
+    fa: `یه روز معمولی بود، آشنا شدیم. اما وقتی کنار مترو خداحافظی کردیم، آغوشت مثل آرام‌ ترین زلزله، منو لرزوند... یه چیزی توی قلبم تکون خورد – یه نرمی، یه جرقه، یه نجوا که گفت: این فقط یه لحظه نبود... قراره مهم‌تر از اینا بشه.`,
+  },
+  firstKissTitle: {
+    en: "Our First Kiss , No More Hiding",
+    fa: "اولین بوسمون ، وقتی دیگه چیزی پنهون نموند",
+  },
+  firstKissDesc: {
+    en: `You knew how I felt long before I said a word. But with your soft insistence, I finally confessed… And then you smiled, said "I feel the same", and we sealed it all with our very first kiss.`,
+    fa: `تو خیلی قبل‌ تر از اینکه چیزی بگم، حسمو می‌دونستی. با اون اصرار شیرینت ازم اعتراف گرفتی… لبخند زدی و گفتی "منم همین حسو دارم" و اون لحظه، همه‌چی با اولین بوسه‌مون واقعی شد.`,
+  },
+  dreamingForeverTitle: {
+    en: "Dreaming Our Forever",
+    fa: "رویای همیشگی ما",
+  },
+  dreamingForeverDesc: {
+    en: `I often imagine our future , Padra’s sweet laugh, Atrina and Adrina’s sleepy hugs, peaceful mornings with you beside me. Just love, warmth, and our little world. This is all I dream of , you, me, our happy kids, and a life full of success, peace, and deep love.`,
+    fa: `گاهی به آیندمون فکر می‌کنم ، خنده‌های پادرا، بغل‌های خواب‌آلود آترینا و آدرینا، صبح‌های آروم با حضور تو... فقط عشق، گرما، و دنیای کوچولوی ما. این همون چیزیه که همیشه آرزوشو دارم ، تو کنارم، بچه‌هامون شاد، و زندگی‌ای پر از موفقیت، آرامش و عشق واقعی.`,
+  },
+  peacefulDayTitle: {
+    en: "That Peaceful Day",
+    fa: "اون روز آروم",
+  },
+  peacefulDayDesc: {
+    en: `No plans, no noise, just the two of us, holding each other close. You fell asleep in my arms, and I stayed still just to feel your warmth, your breathing soft and steady. That simple day became one of the sweetest memories of my life. Safe, quiet, full of love , like home.`,
+    fa: `نه قراری، نه صدایی… فقط من و تو، توی آغوش هم. خواب بودی تو بغلم، نفس‌هات آروم، و من بی‌ حرکت مونده بودم تا فقط گرمای تنتو حس کنم. یکی از قشنگترین حس‌های عمرم همون روز ساده بود... آروم، امن، پر از عشق ، درست مثل خونه.`,
+  },
+
+  // Love Gallery Section
+  galleryTitle: {
+    en: "Our Love Gallery",
+    fa: "گالری عشق ما",
+  },
+  loadMorePhotos: {
+    en: "More Photos",
+    fa: "عکس‌های بیشتر",
+  },
+
+  // footer section
+  footerText: {
+    en: "Made with all my Love for Parmidam, my forever love, on this special Girlfriend's Day",
+    fa: "ساخته شده با تمام عشقم برای پامیدام، عشق همیشگیم، در این روز خاص دوست دختر",
   },
 };
 
@@ -630,8 +683,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const translations = {
     countdownText: {
-      en: "Until our next anniversary on February 14, 2026",
-      fa: "تا سالگرد بعدی ما در ۲۵ بهمن",
+      en: "Until our next anniversary on January 2, 2026",
+      fa: "تا سالگرد بعدی ما در ۱۳ دی",
     },
     celebrationText: {
       en: " Happy Anniversary, my love 🎉",
@@ -648,7 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const countdownTextEl = document.querySelector("[data-i18n='countdownText']");
 
-  const getTargetDate = () => new Date("2026-02-14T00:00:00").getTime();
+  const getTargetDate = () => new Date("2026-01-02T00:00:00").getTime();
 
   let targetDate = getTargetDate();
   let celebrationShown = false;
@@ -735,3 +788,175 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateCountdown, 1000);
 });
 
+// Photo Gallery
+const photoGallery = document.getElementById("photoGallery");
+const loadMorePhotosBtn = document.getElementById("loadMorePhotos");
+let currentIndex = 0;
+
+const allPhotos = [
+  "./public/images/Gallery section/photo_5787642468186049294_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049295_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049296_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049297_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049298_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049299_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049300_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049301_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049302_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049303_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049304_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049305_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049306_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049307_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049308_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049309_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049310_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049311_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049312_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049313_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049314_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049315_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049316_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049317_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049318_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049320_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049321_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049322_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049323_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049325_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049326_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049327_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049328_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049329_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049330_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049331_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049332_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049333_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049334_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049335_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049337_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049338_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049339_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049340_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049341_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049342_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049343_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049350_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049354_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049355_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049356_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049357_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049358_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049359_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049360_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049361_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049362_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049375_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049376_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049377_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049378_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049379_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049380_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049381_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049382_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049383_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049384_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049385_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049386_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049387_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049388_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049389_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049390_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049391_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049392_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049393_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049394_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049395_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049396_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049397_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049398_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049399_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049400_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049401_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049402_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049404_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049405_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049406_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049407_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049408_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049409_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049410_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049411_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049412_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049413_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049414_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049415_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049416_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049417_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049418_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049419_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049420_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049421_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049422_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049423_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049424_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049425_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049426_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049427_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049428_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049430_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049431_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049432_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049433_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049434_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049435_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049437_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049438_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049439_y (1).jpg",
+  "./public/images/Gallery section/photo_5787642468186049440_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049441_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049442_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049443_y.jpg",
+  "./public/images/Gallery section/photo_5787642468186049444_y.jpg",
+  "public/images/Anniversary/3.jpg",
+  "public/images/Anniversary/2.jpg",
+];
+
+let remainingPhotos = [...allPhotos];
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function loadPhotos() {
+  if (remainingPhotos.length === 0) {
+    loadMorePhotosBtn.disabled = true;
+    loadMorePhotosBtn.textContent = "No more photos";
+    return;
+  }
+
+  // Pick 8 random items
+  const photosToLoad = remainingPhotos.splice(0, 8);
+
+  photosToLoad.forEach((photoUrl) => {
+    const galleryItem = document.createElement("div");
+    galleryItem.className =
+      "gallery-item rounded-xl overflow-hidden transition-transform duration-500 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30";
+
+    const img = document.createElement("img");
+    img.src = photoUrl;
+    img.alt = "Our memory";
+    img.className =
+      "w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110";
+
+    galleryItem.appendChild(img);
+    photoGallery.appendChild(galleryItem);
+  });
+}
+
+remainingPhotos = shuffleArray(remainingPhotos);
+loadPhotos();
+
+loadMorePhotosBtn.addEventListener("click", () => {
+  loadPhotos();
+});

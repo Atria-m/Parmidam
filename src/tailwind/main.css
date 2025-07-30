@@ -76,7 +76,6 @@ body.dark {
   }
 }
 
-/* دکمه تغییر تم (اختیاری) */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -180,4 +179,24 @@ html, body {
   transform: translateY(-8px) scale(1.02) rotate(-1deg);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 }
-
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+#hearts-container,
+#stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+body {
+  @apply bg-white text-gray-900 dark:bg-[#0d0d2b] dark:text-white;
+}
